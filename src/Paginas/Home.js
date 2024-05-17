@@ -37,7 +37,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        {/* <div className="row">
+                        <div className="row">
 
                             <div className="col-lg-3 col-6">
                                 <div className="small-box bg-info">
@@ -51,7 +51,7 @@ const Home = () => {
                                     <Link to={"/proveedores"} className="small-box-footer">Ver Proveedores <i className="fas fa-arrow-circle-right" /></Link>
                                 </div>
                             </div>
-                        </div> */}
+                        </div>
 
                         {/* <div className="row">
 

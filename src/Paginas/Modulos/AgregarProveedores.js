@@ -7,50 +7,48 @@ import { useNavigate } from 'react-router-dom';
 import APIInvoke from '../../ArchivoApi/APIInvoke'
 import swal from 'sweetalert';
 
-const AgregarClientes = () => {
+const AgregarProveedores = () => {
 
     const navigate = useNavigate();
 
-    const [clientes, setClientes] = useState({
+    const [proveedores, setProveedores] = useState({
 
-        nombres: '',
-        apellidos: '',
-        documento: '',
+        razonSocial: '',
+        nit: '',
         correo: '',
         telefono: '',
         direccion: ''
 
     });
 
-    const { nombres, apellidos, documento, correo, telefono, direccion } = clientes
+    const { razonSocial,nit, correo, telefono, direccion } = proveedores
 
     useEffect(() => {
-        document.getElementById("nombres").focus();
+        document.getElementById("razonSocial").focus();
     }, [])
 
     const onChange = (e) => {
-        setClientes({
-            ...clientes,
+        setProveedores({
+            ...proveedores,
             [e.target.name]: e.target.value
         })
     }
 
-    const crearCliente = async () => {
+    const crearProveedor = async () => {
 
         const data = {
-            nombres: clientes.nombres,
-            apellidos: clientes.apellidos,
-            documento: clientes.documento,
-            correo: clientes.correo,
-            telefono: clientes.telefono,
-            direccion: clientes.direccion
+            razonSocial: proveedores.razonSocial,
+            nit: proveedores.nit,
+            correo: proveedores.correo,
+            telefono: proveedores.telefono,
+            direccion: proveedores.direccion
         }
 
-        const response = await APIInvoke.invokePOST('/api/clientes', data);
-        const idClientes = response._id;
+        const response = await APIInvoke.invokePOST('/api/proveedores', data);
+        const idProveedor = response._id;
 
-        if (idClientes === '') {
-            const msg = "hubo un error al agregar un cliente";
+        if (idProveedor === '') {
+            const msg = "hubo un error al agregar un proveedor";
             swal({
                 title: 'Error',
                 text: msg,
@@ -67,9 +65,9 @@ const AgregarClientes = () => {
             });
         } else {
 
-            navigate("/clientes");
+            navigate("/proveedores");
 
-            const msg = "El cliente fue creado con exito";
+            const msg = "El proveedor fue creado con exito";
             swal({
                 title: 'Informacion',
                 text: msg,
@@ -84,10 +82,9 @@ const AgregarClientes = () => {
                     }
                 }
             });
-            setClientes({
-                nombres: '',
-                apellidos: '',
-                documento: '',
+            setProveedores({
+                razonSocial: '',
+                nit: '',
                 correo: '',
                 telefono: '',
                 direccion: ''
@@ -98,7 +95,7 @@ const AgregarClientes = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        crearCliente();
+        crearProveedor();
     }
 
     return (  
@@ -109,10 +106,10 @@ const AgregarClientes = () => {
         <div className='content-wrapper'>
 
             <ContentHeader
-                titulo={"Creacion de Clientes"}
-                breadCrumb1={"Listado de clientes"}
+                titulo={"Creacion de Proveedores"}
+                breadCrumb1={"Listado de Proveedores"}
                 breadCrumb2={"Creacion"}
-                ruta1={"/clientes"}
+                ruta1={"/Proveedores"}
             />
       
        
@@ -135,13 +132,13 @@ const AgregarClientes = () => {
 
                             <div className="card-body">
                                 <div className="form-group">
-                                    <label htmlFor='nombres'>Nombres</label>
+                                    <label htmlFor='razonSocial'>Razón Social</label>
                                     <input type="text"
                                         className="form-control"
-                                        id="nombres"
-                                        name="nombres"
-                                        placeholder='Ingrese el nombres del Cliente'
-                                        value={nombres}
+                                        id="razonSocial"
+                                        name="razonSocial"
+                                        placeholder='Ingrese la razón social del Proveedor'
+                                        value={razonSocial}
                                         onChange={onChange}
                                         required
                                     />
@@ -155,34 +152,13 @@ const AgregarClientes = () => {
 
                             <div className="card-body">
                                 <div className="form-group">
-                                    <label htmlFor='nombres'>Apellidos</label>
+                                    <label htmlFor='nit'>Nit</label>
                                     <input type="text"
                                         className="form-control"
-                                        id="apellidos"
-                                        name="apellidos"
-                                        placeholder='Ingrese el apellidos del Cliente'
-                                        value={apellidos}
-                                        onChange={onChange}
-                                        required
-                                    />
-                                    {/* <div className="input-group-append">
-                                        <div className="input-group-text">
-                                            <span className="fas fa-envelope" />
-                                        </div>
-                                    </div> */}
-                                </div>
-                            </div>
-
-
-                            <div className="card-body">
-                                <div className="form-group">
-                                    <label htmlFor='nombres'>Documento</label>
-                                    <input type="text"
-                                        className="form-control"
-                                        id="documento"
-                                        name="documento"
-                                        placeholder='ingrese el documento del Cliente'
-                                        value={documento}
+                                        id="nit"
+                                        name="nit"
+                                        placeholder='Ingrese el nit del Proveedor'
+                                        value={nit}
                                         onChange={onChange}
                                         required
                                     />
@@ -201,7 +177,7 @@ const AgregarClientes = () => {
                                         className="form-control"
                                         id="correo"
                                         name="correo"
-                                        placeholder='ingrese el correo del Cliente'
+                                        placeholder='Ingrese el correo del Proveedor'
                                         value={correo}
                                         onChange={onChange}
                                         required
@@ -221,7 +197,7 @@ const AgregarClientes = () => {
                                         className="form-control"
                                         id="telefono"
                                         name="telefono"
-                                        placeholder='ingrese el telefono del Cliente'
+                                        placeholder='Ingrese el telefono del Proveedor'
                                         value={telefono}
                                         onChange={onChange}
                                         required
@@ -241,7 +217,7 @@ const AgregarClientes = () => {
                                         className="form-control"
                                         id="direccion"
                                         name="direccion"
-                                        placeholder='ingrese el dirección del Cliente'
+                                        placeholder='Ingrese el dirección del Proveedor'
                                         value={direccion}
                                         onChange={onChange}
                                         required
@@ -257,7 +233,7 @@ const AgregarClientes = () => {
 
                             <div className="card-footer">
                                <button type='submit' className="btn btn-primary">
-                                  Agregar cliente
+                                  Agregar Proveedor
                                 </button>
                             
                             </div>
@@ -273,4 +249,4 @@ const AgregarClientes = () => {
     );
 }
 
-export default AgregarClientes
+export default AgregarProveedores

@@ -9,11 +9,10 @@ import swal from 'sweetalert';
 
 
 
-const EditarClientes = () => {
+const EditarProveedores = () => {
 
-    const [nombres, setNombres] = useState('');
-    const [apellidos, setApellidos] = useState('');
-    const [documento, setDocumento] = useState('');
+    const [razonSocial, setRazonSocial] = useState('');
+    const [nit, setNit] = useState('');
     const [correo, setCorreo] = useState('');
     const [telefono, setTelefono] = useState('');
     const [direccion, setDireccion] = useState('');
@@ -22,19 +21,18 @@ const EditarClientes = () => {
 
 
     //funcion actualizar
-    const editarClientes = async (e) => {
+    const editarProveedores = async (e) => {
         e.preventDefault();
-        const response = await APIInvoke.invokePUT(`/api/clientes/${id}`, {
-            nombres: nombres,
-            apellidos: apellidos,
-            documento: documento,
+        const response = await APIInvoke.invokePUT(`/api/proveedores/${id}`, {
+            razonSocial: razonSocial,
+            nit: nit,
             correo: correo,
             telefono: telefono,
             direccion: direccion,
         })
 
-        if (response.msg==='El cliente fue actualizado correctamente') {
-            const msg='El cliente fue actualizado correctamente'
+        if (response.msg==='El Proveedor fue actualizado correctamente') {
+            const msg='El proveedor fue actualizado correctamente'
             swal({
                 title: 'Informacion',
                 text: msg,
@@ -49,7 +47,7 @@ const EditarClientes = () => {
                     }
                 }
             });
-            navigate('/clientes');
+            navigate('/proveedores');
         } else {
             const msg='El cliente no fue actualizado.'
             swal({
@@ -71,15 +69,14 @@ const EditarClientes = () => {
     }
 
     useEffect( () =>{
-        getclientesID()
+        getProveedoresID()
       //eslint-disable-next-line
     }, []);
 
-    const getclientesID = async () => {
-       const resul =  await APIInvoke.invokeGET(`/api/clientes/${id}`)
-       setNombres(resul.nombres)
-       setApellidos(resul.apellidos)
-       setDocumento(resul.documento)
+    const getProveedoresID = async () => {
+       const resul =  await APIInvoke.invokeGET(`/api/proveedores/${id}`)
+       setRazonSocial(resul.razonSocial)
+       setNit(resul.nit)
        setCorreo(resul.correo)
        setTelefono(resul.telefono)
        setDireccion(resul.direccion)
@@ -95,10 +92,10 @@ const EditarClientes = () => {
     <div className="content-wrapper">
 
         <ContentHeader
-            titulo={"Editar Clientes"}
-            breadCrumb1={"Listado de clientes"}
+            titulo={"Editar Proveedores"}
+            breadCrumb1={"Listado de proveedores"}
             breadCrumb2={"editar"}
-            ruta1={"/Clientes"}
+            ruta1={"/Proveedores"}
         />
     <section className="content" >
             <div className="card">
@@ -118,54 +115,34 @@ const EditarClientes = () => {
                 </div>
 
                 <div className="card-body">
-                    <form onSubmit={editarClientes}>
+                    <form onSubmit={editarProveedores}>
 
                         <div className="card-body" >
                             <div className="form-group">
-                                <label htmlFor="nombres" > Nombres </label>
+                                <label htmlFor="razonSocial" > Razón Social </label>
                                 <input type="text"
                                 className="form-control"
-                                id='nombres'
-                                name='nombres'
-                                placeholder="Ingrese los nombres del Cliente"
-                                value={nombres}
-                                onChange={(e) => setNombres(e.target.value)}
+                                id='razonSocial'
+                                name='razonSocial'
+                                placeholder="Ingrese los razón social del Proveedor"
+                                value={razonSocial}
+                                onChange={(e) => setRazonSocial(e.target.value)}
                                 required
                                 />   
                           </div>
                         </div>
 
                      
-
-
                         <div className="card-body" >
                             <div className="form-group">
-                                <label htmlFor="apellidos" > Apellidos </label>
-                                <input type="text"
-                                className="form-control"
-                                id='apellidos'
-                                name='apellidos'
-                                placeholder="Ingrese el apellido del Cliente"
-                                value={apellidos}
-                                onChange={(e) => setApellidos(e.target.value)}
-                                required
-                                />   
-                          </div>
-                        </div>
-
-
-
-
-                        <div className="card-body" >
-                            <div className="form-group">
-                                <label htmlFor="cedula" > Cedula </label>
+                                <label htmlFor="nit" > Nit </label>
                                 <input type="number"
                                 className="form-control"
-                                id='cedula'
-                                name='cedula'
-                                placeholder="Ingrese la documento del Cliente"
-                                value={documento}
-                                onChange={(e) => setDocumento(e.target.value)}
+                                id='nit'
+                                name='nit'
+                                placeholder="Ingrese la Nit del Proveedor"
+                                value={nit}
+                                onChange={(e) => setNit(e.target.value)}
                                 required
                                 />   
                           </div>
@@ -180,7 +157,7 @@ const EditarClientes = () => {
                                 className="form-control"
                                 id='correo'
                                 name='correo'
-                                placeholder="Ingrese el correo del Cliente"
+                                placeholder="Ingrese el correo del Proveedor"
                                 value={correo}
                                 onChange={(e) => setCorreo(e.target.value)}
                                 required
@@ -198,7 +175,7 @@ const EditarClientes = () => {
                                 className="form-control"
                                 id='telefono'
                                 name='telefono'
-                                placeholder="Ingrese el telefono del Cliente"
+                                placeholder="Ingrese el telefono del Proveedor"
                                 value={telefono}
                                 onChange={(e) => setTelefono(e.target.value)}
                                 required
@@ -216,7 +193,7 @@ const EditarClientes = () => {
                                 className="form-control"
                                 id='direccion'
                                 name='direccion'
-                                placeholder="Ingrese la direccion del Cliente"
+                                placeholder="Ingrese la direccion del Proveedor"
                                 value={direccion}
                                 onChange={(e) => setDireccion(e.target.value)}
                                 required
@@ -242,5 +219,5 @@ const EditarClientes = () => {
   )
 }
 
-export default EditarClientes
+export default EditarProveedores
 

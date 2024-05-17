@@ -14,10 +14,25 @@ const Menu = () => {
                     </Link>
                 </li>
                 <li className="nav-item">
+                
                     <Link to={"/clientes"} className="nav-link">
-                        <i className="nav-icon fas fa-edit" />
+                    <i className="nav-icon fa-solid fa-briefcase"/>    
+                     <p>
+                        Clientes
+                        </p> 
+                    
+                       
+                        
+                      
+                    </Link>
+                </li>
+                <li className="nav-item">
+                    <Link to={"/proveedores"} className="nav-link">
+                        
+                        
+                    <i className="nav-icon fa-solid fa-truck"></i>
                         <p>
-                            Clientes
+                            Proveedores
                         </p>
                     </Link>
                 </li>

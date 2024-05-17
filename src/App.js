@@ -6,6 +6,9 @@ import Home from './Paginas/Home';
 import MostrarClientes from './Paginas/Modulos/MostrarClientes';
 import AgregarClientes from './Paginas/Modulos/AgregarClientes';
 import EditarClientes from './Paginas/Modulos/EditarClientes';
+import MostrarProveedores from './Paginas/Modulos/MostrarProveedores';
+import AgregarProveedores from './Paginas/Modulos/AgregarProveedores';
+import EditarProveedores from './Paginas/Modulos/EditarProveedores';
 
 
 function App() {
@@ -26,6 +29,13 @@ function App() {
             <Route path='/Clientes/agregar' exact element={<AgregarClientes/>}></Route> 
             {/* ruta de modificar clientes */}
             <Route path="/Clientes/editar/:id" exact element = {<EditarClientes/>}></Route>
+
+            {/* ruta de clientes */}
+            <Route path='/Proveedores' exact element={<MostrarProveedores/>}></Route> 
+            {/* ruta de regitrarClientes */}
+            <Route path='/Proveedores/agregar' exact element={<AgregarProveedores/>}></Route> 
+            {/* ruta de modificar clientes */}
+            <Route path="/Proveedores/editar/:id" exact element = {<EditarProveedores/>}></Route>
           </Routes>
         </Router>
       </Fragment>
